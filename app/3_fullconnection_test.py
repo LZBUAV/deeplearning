@@ -52,7 +52,7 @@ def test_grad():
     lable = [0.9, 0.1, 0.1, 0.9, 0.8, 0.7, 0.6]
     func = activate_function.ActivateFun()
     f = func.sigmod
-    net = bbnet.Network([7,30,7],f)
+    net = bbnet.Fully_Connected_Network([7,30,7],f)
     grad_check(net, lable, sample)
 
 #---------------------------------------------使用自己生成的数据集训练-----------------------------------------------
@@ -101,7 +101,7 @@ def train_Y_X():
     data_set, lable = get_data_set()
     activate_func = activate_function.ActivateFun()
     func = activate_func.sigmod
-    net = bbnet.Network([8,5,8], func)
+    net = bbnet.Fully_Connected_Network([8,5,8], func)
     net.train(lable, data_set, 0.006, 150000)
     correct_rate = calc_correct_rate(net)
     print("correct_rate :", correct_rate)
@@ -111,7 +111,7 @@ def train_Y_X_VECTOR():
     data_set, lable = transpose(get_data_set())
     activate_func = activate_function.ActivateFun()
     func = activate_func.sigmod
-    net = bbnet.Network_Vector([8,5,8], activate_func)
+    net = bbnet.Fully_Connected_Network_Vector([8,5,8], activate_func)
     net.train(lable, data_set, 0.006, 150000)
     correct_rate = calc_correct_rate(net)
     print("correct_rate :", correct_rate)
@@ -159,7 +159,7 @@ def train_MNIST_and_evaluate():
     print("read datas finished!------")
     activate_func = activate_function.ActivateFun()
     func = activate_func.sigmod
-    network = bbnet.Network([784, 300, 10], func)
+    network = bbnet.Fully_Connected_Network([784, 300, 10], func)
     while True:
         epoch += 1
         network.train(train_labels, train_data_set, 0.005, 1)
@@ -198,7 +198,7 @@ def test_grad_VECTOR():
     sample = np.array([0.9, 0.1, 0.1, 0.9, 0.8, 0.7, 0.6]).reshape(7,1)
     lable = np.array([0.9, 0.1, 0.1, 0.9, 0.8, 0.7, 0.6]).reshape(7,1)
     func = activate_function.ActivateFun()
-    net = bbnet.Network_Vector([7,30,7],func)
+    net = bbnet.Fully_Connected_Network_Vector([7,30,7],func)
     grad_check_vector(net, lable, sample)
 
 
@@ -219,7 +219,7 @@ def train_MNIST_and_evaluate_VECTOR():
     test_data_set, test_labels = transpose(get_test_data_set())
     print("read datas finished!------")
     func = activate_function.ActivateFun()
-    network = bbnet.Network_Vector([784, 300, 10], func)
+    network = bbnet.Fully_Connected_Network_Vector([784, 300, 10], func)
     while True:
         epoch += 1
         network.train(train_labels, train_data_set, 0.003, 1)
@@ -233,7 +233,7 @@ def train_MNIST_and_evaluate_VECTOR():
                 last_error_ratio = error_ratio
 #-------------------------------------------------调用上述3个应用进行实现-------------------------------------------------------
 # test_grad()
-# test_grad_VECTOR
+# test_grad_VECTOR()
 # train_Y_X()
 # train_Y_X_VECTOR()
 # train_MNIST_and_evaluate()
