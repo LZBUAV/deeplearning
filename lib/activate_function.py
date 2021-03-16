@@ -24,3 +24,9 @@ class ActivateFun(object):
 
     def sigmod_backward(self, output):
         return output * (1.0 - output)
+
+    def relu_forward(self, x):
+        return x
+
+    def relu_backward(self, x):
+        return 1
