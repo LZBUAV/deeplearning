@@ -217,10 +217,7 @@ class Fully_Connected_Network(object):
     def train(self, labels, samples, learning_rate, epoch):
         for i in range(epoch):
             for j in range(len(samples)):
-                loss = self.train_once(labels[j], samples[j], learning_rate)
-                if j % 30  == 0:
-                    print("epoch :", i + 1, "|  sample", j + 1, "|  loss :", loss)
-            print("epoch :", i + 1, "finished!")
+                self.train_once(labels[j], samples[j], learning_rate)
 
 #实现2 向量化编程,能够显著提高计算速度,几百倍
 class Fully_Connection_Layer(object):
@@ -279,8 +276,7 @@ class Fully_Connected_Network_Vector(object):
     def train(self, lables, samples, learning_rate, epoch):
         for i in range(epoch):
             for j in range(len(samples)):
-                loss = self.train_once(lables[j], samples[j], learning_rate)
-            print("epoch :", i + 1, "|  loss :", loss)
+                self.train_once(lables[j], samples[j], learning_rate)
 
 #-----------------------------------------------CNN network------------------------------------------------------
 def padding(input, zp):

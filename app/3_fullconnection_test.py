@@ -102,7 +102,7 @@ def train_Y_X():
     activate_func = activate_function.ActivateFun()
     func = activate_func.sigmod
     net = bbnet.Fully_Connected_Network([8,5,8], func)
-    net.train(lable, data_set, 0.006, 150000)
+    net.train(lable, data_set, 0.006, 500)
     correct_rate = calc_correct_rate(net)
     print("correct_rate :", correct_rate)
 
@@ -110,22 +110,21 @@ def train_Y_X():
 def train_Y_X_VECTOR():
     data_set, lable = transpose(get_data_set())
     activate_func = activate_function.ActivateFun()
-    func = activate_func.sigmod
     net = bbnet.Fully_Connected_Network_Vector([8,5,8], activate_func)
-    net.train(lable, data_set, 0.006, 150000)
+    net.train(lable, data_set, 0.006, 500)
     correct_rate = calc_correct_rate(net)
     print("correct_rate :", correct_rate)
 
 #---------------------------------------------使用MINIST数据集训练-----------------------------------------------
 #神经网络训练=测试2，使用MINIST数据集
 def get_training_data_set():
-    image_loader = data_sets.ImageLoader(parent_path + '/datasets/MNIST/train-images.idx3-ubyte', 600)
-    label_loader = data_sets.LabelLoader(parent_path + '/datasets/MNIST/train-labels.idx1-ubyte', 600)
+    image_loader = data_sets.ImageLoader(parent_path + '/datasets/MNIST/train-images.idx3-ubyte', 60000)
+    label_loader = data_sets.LabelLoader(parent_path + '/datasets/MNIST/train-labels.idx1-ubyte', 60000)
     return image_loader.load(), label_loader.load()
 
 def get_test_data_set():
-    image_loader = data_sets.ImageLoader(parent_path + '/datasets/MNIST/t10k-images.idx3-ubyte', 100)
-    label_loader = data_sets.LabelLoader(parent_path + '/datasets/MNIST/t10k-labels.idx1-ubyte', 100)
+    image_loader = data_sets.ImageLoader(parent_path + '/datasets/MNIST/t10k-images.idx3-ubyte', 10000)
+    label_loader = data_sets.LabelLoader(parent_path + '/datasets/MNIST/t10k-labels.idx1-ubyte', 10000)
     return image_loader.load(), label_loader.load()
 
 #获取结果，对网络输出进行后处理
@@ -215,6 +214,8 @@ def train_MNIST_and_evaluate_VECTOR():
     last_error_ratio = 1.0
     epoch = 0
     print("reading datas.........")
+    # train_data_set, train_labels = transpose(get_training_data_set())
+    # test_data_set, test_labels = transpose(get_test_data_set())
     train_data_set, train_labels = transpose(get_training_data_set())
     test_data_set, test_labels = transpose(get_test_data_set())
     print("read datas finished!------")
