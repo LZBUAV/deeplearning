@@ -5,9 +5,9 @@ parent_path = os.path.dirname(file_path)
 sys.path.append(parent_path)
 from lib.bbnet import Perceptioin
 from lib.activate_function import ActivateFun
-from lib.data_sets import xor_data
+from lib.data_sets import and_data
 
-datas = xor_data()
+datas = and_data()
 input_vectors = datas.samples
 labels = datas.labels
 print("inputs : ", input_vectors)

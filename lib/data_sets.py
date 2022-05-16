@@ -1,7 +1,7 @@
 from functools import reduce
 
 #------------------------------------------用于感知机的与数据集---------------------------------------
-class xor_data(object):
+class and_data(object):
     def __init__(self):
         self.samples = [[1,1], [0,0], [1,0], [0,1]]
         self.labels = [1, 0, 0, 0]
